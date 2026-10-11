@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 52px; /* keeps anchored sections clear of the sticky nav */
+  }
+  body {
+    @apply bg-[#F3E9DC] font-text text-cocoa antialiased;
+    overflow-x: clip;
+  }
+  img {
+    -webkit-user-drag: none;
+  }
+  /* Playfair defaults to old-style figures; dates and countdowns need lining numerals. */
+  .font-heading {
+    font-variant-numeric: lining-nums;
+  }
+  :focus-visible {
+    outline: 2px solid #b8863b;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  ::selection {
+    background: #e8d0a2aa;
+  }
+}
+
+@layer components {
+  /* The phone-shaped column; on wider screens it is centred with a soft shadow, like the reference. */
+  .page {
+    @apply relative mx-auto min-h-screen w-full max-w-[430px] overflow-x-clip bg-gradient-to-b from-[#F8ECDF] via-[#F6E5D6] to-[#F3DCCB] shadow-[0_0_60px_-20px_rgba(90,46,30,0.35)];
+  }
+
+  /* Every content section is its own rounded card, separated from its neighbours by clear space. */
+  .card-section {
+    @apply relative mx-3 mt-6 overflow-hidden rounded-[30px] border border-white/80 px-5 py-9 shadow-card;
+  }
+
+  .gold-text {
+    background: linear-gradient(100deg, #8a5f1d 0%, #c99a45 28%, #a67629 50%, #e6c885 58%, #a67629 70%, #8a5f1d 100%);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-gold-soft/70 bg-white/80 px-3.5 py-3 font-text text-[14px] text-cocoa placeholder:text-cocoa-mute/80 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-b from-[#c9984a] to-gold px-6 py-3 font-text text-[14px] font-medium tracking-wide text-white shadow-soft transition-transform duration-200 hover:-translate-y-px active:translate-y-0 disabled:opacity-60;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold bg-white/70 px-6 py-2.5 font-text text-[13.5px] font-medium text-cocoa transition-colors duration-200 hover:bg-cream-warm;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
